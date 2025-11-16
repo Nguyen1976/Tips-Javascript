@@ -1,0 +1,7 @@
+# Làm sao để ngăn chặn được việc qua nhiều req truy cập vào hệ thống
+
+- Để trả lời câu hỏi này thì thứ mà chúng ta nghĩ đến đầu tiên là ratelimit
+ + mapping vào 1 tình huống trong thực tế giả sử khi đi gửi xe ở bệnh viện vào những giờ cao điểm, có những lúc chúng ta sẽ phải đợi và chững lại rất lâu và chỉ được di chuyển khi có 1 người khác check-out tức trong bệnh viện lúc đó đã đạt đến cái gọi là rate limit nếu cứ chấp nhận thì nhà để xe sẽ bị phá vỡ như con server của mình vậy. Vậy lên người ta đã cho 1 cái rate limit và chỉ khi nhà xe có người ra thì mới có người được vào.
+ + Trong hệ thống thì nó thường được triển khai như nào. Giả sử khi đi ăn một nhà hàng buffe và có món tôm hùm rất là hot và người ta có nhu cầu rất cao ở món này. Nhưng nhà hàng đã thiết kế 1 cách thông mình là chỉ phục vụ 100 con/h. Và trong server cũng vậy nó có 1 cái gọi là token bucket giả sử bucket nó chỉ làm mới trong 1s và nó chứa 100 token tối đã khi tocken trong đó bằng 0 thì những req đến sẽ bị đánh rớt.
+
+- Có một hướng nữa đó chính là về queue về việc săn sale chẳng hạn. Khi người ta săn sale tức ai nhanh tay và mạng ổn định thì sẽ được. Nếu như cách cũ thì 100 người đến trước được phục vụ và khi người 101 đến thì token hết và đánh rớt nhưng người đến sau là 102 lại được phục vụ vì người ta đến đúng lúc. Để giải quyết được vấn đề này có thể nghĩ ngay đến queue tức ai đến trước sẽ được phục vụ trước và sẽ ngồi đợi nếu hết token vừa vẫn kết hợp rate limit và đảm bảo tính công bằng, ngắn chặn spam bằng req liên tục.
