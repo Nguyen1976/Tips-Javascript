@@ -1,7 +1,8 @@
 - Xóa tin nhắn có 2 loại đó là xóa phía mình và xóa cả phía đối phương và phía mình
 
-Fresher
+# Fresher
 ![alt text](image.png)
+
 Với cách này thì khi query chỉ cần query những tin nhắn mà người query không nằm trong deleted_by là xong
 Đúng và vẫn chạy được
 <!-- Và 1 đặc điểm khi triển khai chat thì các hệ thống thường sử dụng nosql đặc biệt là mongoDB
@@ -33,8 +34,7 @@ Khi 1 document vừa được Select (User B load tin nhắn) vừa được Upd
 
 Việc update hàng loạt (Clear history) sẽ gây Lock trên diện rộng, dẫn đến hiện tượng Deadlock hoặc Timeout cho các request khác.
 
-Senior
-Thêm 1 cái table
+# Senior
 ![alt text](image-2.png)
 
 Nhược điểm nếu collection có nhiều group thì phân chia cái bảng như thế nào
